@@ -1,0 +1,1 @@
+2026-01-30 18:19:27,874 - root - ERROR - GUI launch error: [WinError 126] The specified module could not be found. Error loading "C:\Users\Dell\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\lib\fbgemm.dll" or one of its dependencies.
