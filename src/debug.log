@@ -1,0 +1,593 @@
+2025-12-29 23:08:03,414 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2025-12-29 23:13:15,182 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2025-12-29 23:13:15,182 - root - INFO - No existing database found at data/embeddings/lsh_test_db.pkl, starting fresh
+2025-12-29 23:13:15,183 - root - INFO - VectorDatabase initialized with dimension 512, LSH: enabled
+2025-12-29 23:14:01,151 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2025-12-29 23:14:01,152 - root - INFO - No existing database found at data/embeddings/lsh_test_db.pkl, starting fresh
+2025-12-29 23:14:01,152 - root - INFO - VectorDatabase initialized with dimension 512, LSH: enabled
+2025-12-29 23:18:13,687 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2025-12-29 23:18:13,698 - root - INFO - No existing database found at data/embeddings/lsh_test_db.pkl, starting fresh
+2025-12-29 23:18:13,698 - root - INFO - VectorDatabase initialized with dimension 512, LSH: enabled
+2025-12-29 23:18:13,698 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2025-12-29 23:18:13,698 - root - INFO - Database cleared
+2025-12-29 23:18:13,698 - root - INFO - Using device: cpu
+2025-12-29 23:18:46,869 - root - INFO - ImageProcessor initialized successfully
+2025-12-29 23:18:46,870 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\car
+2025-12-29 23:18:46,927 - root - INFO - Processed 1/10: car_001.jpg -> Dim: 512
+2025-12-29 23:18:46,948 - root - INFO - Processed 2/10: car_002.jpg -> Dim: 512
+2025-12-29 23:18:46,967 - root - INFO - Processed 3/10: car_003.jpg -> Dim: 512
+2025-12-29 23:18:46,986 - root - INFO - Processed 4/10: car_004.jpg -> Dim: 512
+2025-12-29 23:18:47,005 - root - INFO - Processed 5/10: car_005.jpg -> Dim: 512
+2025-12-29 23:18:47,025 - root - INFO - Processed 6/10: car_006.jpg -> Dim: 512
+2025-12-29 23:18:47,045 - root - INFO - Processed 7/10: car_007.jpg -> Dim: 512
+2025-12-29 23:18:47,063 - root - INFO - Processed 8/10: car_008.jpg -> Dim: 512
+2025-12-29 23:18:47,083 - root - INFO - Processed 9/10: car_009.jpg -> Dim: 512
+2025-12-29 23:18:47,105 - root - INFO - Processed 10/10: car_010.jpg -> Dim: 512
+2025-12-29 23:18:47,105 - root - INFO - Successfully processed 10/10 images
+2025-12-29 23:18:47,108 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\animal
+2025-12-29 23:18:47,133 - root - INFO - Processed 1/10: animal_001.jpg -> Dim: 512
+2025-12-29 23:18:47,166 - root - INFO - Processed 2/10: animal_002.jpg -> Dim: 512
+2025-12-29 23:18:47,188 - root - INFO - Processed 3/10: animal_003.jpg -> Dim: 512
+2025-12-29 23:18:47,210 - root - INFO - Processed 4/10: animal_004.jpg -> Dim: 512
+2025-12-29 23:18:47,231 - root - INFO - Processed 5/10: animal_005.jpg -> Dim: 512
+2025-12-29 23:18:47,250 - root - INFO - Processed 6/10: animal_006.jpg -> Dim: 512
+2025-12-29 23:18:47,268 - root - INFO - Processed 7/10: animal_007.jpg -> Dim: 512
+2025-12-29 23:18:47,286 - root - INFO - Processed 8/10: animal_008.jpg -> Dim: 512
+2025-12-29 23:18:47,308 - root - INFO - Processed 9/10: animal_009.jpg -> Dim: 512
+2025-12-29 23:18:47,334 - root - INFO - Processed 10/10: animal_010.jpg -> Dim: 512
+2025-12-29 23:18:47,334 - root - INFO - Successfully processed 10/10 images
+2025-12-29 23:18:47,336 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\building
+2025-12-29 23:18:47,360 - root - INFO - Processed 1/10: building_001.jpg -> Dim: 512
+2025-12-29 23:18:47,383 - root - INFO - Processed 2/10: building_002.jpg -> Dim: 512
+2025-12-29 23:18:47,405 - root - INFO - Processed 3/10: building_003.jpg -> Dim: 512
+2025-12-29 23:18:47,427 - root - INFO - Processed 4/10: building_004.jpg -> Dim: 512
+2025-12-29 23:18:47,446 - root - INFO - Processed 5/10: building_005.jpg -> Dim: 512
+2025-12-29 23:18:47,464 - root - INFO - Processed 6/10: building_006.jpg -> Dim: 512
+2025-12-29 23:18:47,486 - root - INFO - Processed 7/10: building_007.jpg -> Dim: 512
+2025-12-29 23:18:47,509 - root - INFO - Processed 8/10: building_008.jpg -> Dim: 512
+2025-12-29 23:18:47,535 - root - INFO - Processed 9/10: building_009.jpg -> Dim: 512
+2025-12-29 23:18:47,556 - root - INFO - Processed 10/10: building_010.jpg -> Dim: 512
+2025-12-29 23:18:47,557 - root - INFO - Successfully processed 10/10 images
+2025-12-29 23:18:47,559 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\food
+2025-12-29 23:18:47,581 - root - INFO - Processed 1/10: food_001.jpg -> Dim: 512
+2025-12-29 23:18:47,604 - root - INFO - Processed 2/10: food_002.jpg -> Dim: 512
+2025-12-29 23:18:47,623 - root - INFO - Processed 3/10: food_003.jpg -> Dim: 512
+2025-12-29 23:18:47,646 - root - INFO - Processed 4/10: food_004.jpg -> Dim: 512
+2025-12-29 23:18:47,663 - root - INFO - Processed 5/10: food_005.jpg -> Dim: 512
+2025-12-29 23:18:47,685 - root - INFO - Processed 6/10: food_006.jpg -> Dim: 512
+2025-12-29 23:18:47,705 - root - INFO - Processed 7/10: food_007.jpg -> Dim: 512
+2025-12-29 23:18:47,729 - root - INFO - Processed 8/10: food_008.jpg -> Dim: 512
+2025-12-29 23:18:47,753 - root - INFO - Processed 9/10: food_009.jpg -> Dim: 512
+2025-12-29 23:18:47,780 - root - INFO - Processed 10/10: food_010.jpg -> Dim: 512
+2025-12-29 23:18:47,780 - root - INFO - Successfully processed 10/10 images
+2025-12-29 23:18:47,782 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\nature
+2025-12-29 23:18:47,803 - root - INFO - Processed 1/10: nature_001.jpg -> Dim: 512
+2025-12-29 23:18:47,824 - root - INFO - Processed 2/10: nature_002.jpg -> Dim: 512
+2025-12-29 23:18:47,844 - root - INFO - Processed 3/10: nature_003.jpg -> Dim: 512
+2025-12-29 23:18:47,862 - root - INFO - Processed 4/10: nature_004.jpg -> Dim: 512
+2025-12-29 23:18:47,883 - root - INFO - Processed 5/10: nature_005.jpg -> Dim: 512
+2025-12-29 23:18:47,902 - root - INFO - Processed 6/10: nature_006.jpg -> Dim: 512
+2025-12-29 23:18:47,921 - root - INFO - Processed 7/10: nature_007.jpg -> Dim: 512
+2025-12-29 23:18:47,943 - root - INFO - Processed 8/10: nature_008.jpg -> Dim: 512
+2025-12-29 23:18:47,967 - root - INFO - Processed 9/10: nature_009.jpg -> Dim: 512
+2025-12-29 23:18:47,989 - root - INFO - Processed 10/10: nature_010.jpg -> Dim: 512
+2025-12-29 23:18:47,989 - root - INFO - Successfully processed 10/10 images
+2025-12-29 23:18:47,994 - root - INFO - ==================================================
+2025-12-29 23:18:47,994 - root - INFO - Benchmarking Search Methods
+2025-12-29 23:18:47,994 - root - INFO - ==================================================
+2025-12-29 23:18:47,994 - root - INFO - Testing brute-force search...
+2025-12-29 23:18:47,995 - root - INFO - Testing LSH search...
+2025-12-29 23:18:47,996 - root - INFO - Average Brute-force Time: 0.000334s
+2025-12-29 23:18:47,996 - root - INFO - Average LSH Time: 0.000170s
+2025-12-29 23:18:47,996 - root - INFO - Speedup: 1.97x
+2025-12-29 23:18:47,996 - root - INFO - Average Precision@5: 0.6000
+2025-12-30 01:38:10,422 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2025-12-30 01:38:10,423 - root - INFO - LSH Index loaded from disk
+2025-12-30 01:38:10,423 - root - INFO - Database loaded from data/embeddings/lsh_test_db.pkl: 50 vectors
+2025-12-30 01:38:10,423 - root - INFO - VectorDatabase initialized with dimension 512, LSH: enabled
+2025-12-30 01:38:10,423 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2025-12-30 01:38:10,425 - root - INFO - Database cleared
+2025-12-30 01:38:10,425 - root - INFO - Using device: cpu
+2025-12-30 01:38:10,613 - root - INFO - ImageProcessor initialized successfully
+2025-12-30 01:38:10,614 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\car
+2025-12-30 01:38:10,697 - root - INFO - Processed 1/10: car_001.jpg -> Dim: 512
+2025-12-30 01:38:10,715 - root - INFO - Processed 2/10: car_002.jpg -> Dim: 512
+2025-12-30 01:38:10,733 - root - INFO - Processed 3/10: car_003.jpg -> Dim: 512
+2025-12-30 01:38:10,749 - root - INFO - Processed 4/10: car_004.jpg -> Dim: 512
+2025-12-30 01:38:10,768 - root - INFO - Processed 5/10: car_005.jpg -> Dim: 512
+2025-12-30 01:38:10,787 - root - INFO - Processed 6/10: car_006.jpg -> Dim: 512
+2025-12-30 01:38:10,808 - root - INFO - Processed 7/10: car_007.jpg -> Dim: 512
+2025-12-30 01:38:10,834 - root - INFO - Processed 8/10: car_008.jpg -> Dim: 512
+2025-12-30 01:38:10,857 - root - INFO - Processed 9/10: car_009.jpg -> Dim: 512
+2025-12-30 01:38:10,891 - root - INFO - Processed 10/10: car_010.jpg -> Dim: 512
+2025-12-30 01:38:10,892 - root - INFO - Successfully processed 10/10 images
+2025-12-30 01:38:10,895 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\animal
+2025-12-30 01:38:10,922 - root - INFO - Processed 1/10: animal_001.jpg -> Dim: 512
+2025-12-30 01:38:10,949 - root - INFO - Processed 2/10: animal_002.jpg -> Dim: 512
+2025-12-30 01:38:10,969 - root - INFO - Processed 3/10: animal_003.jpg -> Dim: 512
+2025-12-30 01:38:10,988 - root - INFO - Processed 4/10: animal_004.jpg -> Dim: 512
+2025-12-30 01:38:11,007 - root - INFO - Processed 5/10: animal_005.jpg -> Dim: 512
+2025-12-30 01:38:11,029 - root - INFO - Processed 6/10: animal_006.jpg -> Dim: 512
+2025-12-30 01:38:11,051 - root - INFO - Processed 7/10: animal_007.jpg -> Dim: 512
+2025-12-30 01:38:11,072 - root - INFO - Processed 8/10: animal_008.jpg -> Dim: 512
+2025-12-30 01:38:11,100 - root - INFO - Processed 9/10: animal_009.jpg -> Dim: 512
+2025-12-30 01:38:11,125 - root - INFO - Processed 10/10: animal_010.jpg -> Dim: 512
+2025-12-30 01:38:11,126 - root - INFO - Successfully processed 10/10 images
+2025-12-30 01:38:11,129 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\building
+2025-12-30 01:38:11,156 - root - INFO - Processed 1/10: building_001.jpg -> Dim: 512
+2025-12-30 01:38:11,190 - root - INFO - Processed 2/10: building_002.jpg -> Dim: 512
+2025-12-30 01:38:11,222 - root - INFO - Processed 3/10: building_003.jpg -> Dim: 512
+2025-12-30 01:38:11,256 - root - INFO - Processed 4/10: building_004.jpg -> Dim: 512
+2025-12-30 01:38:11,283 - root - INFO - Processed 5/10: building_005.jpg -> Dim: 512
+2025-12-30 01:38:11,311 - root - INFO - Processed 6/10: building_006.jpg -> Dim: 512
+2025-12-30 01:38:11,339 - root - INFO - Processed 7/10: building_007.jpg -> Dim: 512
+2025-12-30 01:38:11,364 - root - INFO - Processed 8/10: building_008.jpg -> Dim: 512
+2025-12-30 01:38:11,384 - root - INFO - Processed 9/10: building_009.jpg -> Dim: 512
+2025-12-30 01:38:11,407 - root - INFO - Processed 10/10: building_010.jpg -> Dim: 512
+2025-12-30 01:38:11,407 - root - INFO - Successfully processed 10/10 images
+2025-12-30 01:38:11,409 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\food
+2025-12-30 01:38:11,429 - root - INFO - Processed 1/10: food_001.jpg -> Dim: 512
+2025-12-30 01:38:11,450 - root - INFO - Processed 2/10: food_002.jpg -> Dim: 512
+2025-12-30 01:38:11,468 - root - INFO - Processed 3/10: food_003.jpg -> Dim: 512
+2025-12-30 01:38:11,489 - root - INFO - Processed 4/10: food_004.jpg -> Dim: 512
+2025-12-30 01:38:11,509 - root - INFO - Processed 5/10: food_005.jpg -> Dim: 512
+2025-12-30 01:38:11,532 - root - INFO - Processed 6/10: food_006.jpg -> Dim: 512
+2025-12-30 01:38:11,552 - root - INFO - Processed 7/10: food_007.jpg -> Dim: 512
+2025-12-30 01:38:11,572 - root - INFO - Processed 8/10: food_008.jpg -> Dim: 512
+2025-12-30 01:38:11,593 - root - INFO - Processed 9/10: food_009.jpg -> Dim: 512
+2025-12-30 01:38:11,615 - root - INFO - Processed 10/10: food_010.jpg -> Dim: 512
+2025-12-30 01:38:11,615 - root - INFO - Successfully processed 10/10 images
+2025-12-30 01:38:11,617 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\nature
+2025-12-30 01:38:11,638 - root - INFO - Processed 1/10: nature_001.jpg -> Dim: 512
+2025-12-30 01:38:11,659 - root - INFO - Processed 2/10: nature_002.jpg -> Dim: 512
+2025-12-30 01:38:11,684 - root - INFO - Processed 3/10: nature_003.jpg -> Dim: 512
+2025-12-30 01:38:11,704 - root - INFO - Processed 4/10: nature_004.jpg -> Dim: 512
+2025-12-30 01:38:11,723 - root - INFO - Processed 5/10: nature_005.jpg -> Dim: 512
+2025-12-30 01:38:11,751 - root - INFO - Processed 6/10: nature_006.jpg -> Dim: 512
+2025-12-30 01:38:11,783 - root - INFO - Processed 7/10: nature_007.jpg -> Dim: 512
+2025-12-30 01:38:11,809 - root - INFO - Processed 8/10: nature_008.jpg -> Dim: 512
+2025-12-30 01:38:11,845 - root - INFO - Processed 9/10: nature_009.jpg -> Dim: 512
+2025-12-30 01:38:11,868 - root - INFO - Processed 10/10: nature_010.jpg -> Dim: 512
+2025-12-30 01:38:11,869 - root - INFO - Successfully processed 10/10 images
+2025-12-30 01:38:11,872 - root - INFO - ==================================================
+2025-12-30 01:38:11,872 - root - INFO - Benchmarking Search Methods
+2025-12-30 01:38:11,873 - root - INFO - ==================================================
+2025-12-30 01:38:11,873 - root - INFO - Testing brute-force search...
+2025-12-30 01:38:11,874 - root - INFO - Testing LSH search...
+2025-12-30 01:38:11,875 - root - INFO - Average Brute-force Time: 0.000332s
+2025-12-30 01:38:11,875 - root - INFO - Average LSH Time: 0.000332s
+2025-12-30 01:38:11,875 - root - INFO - Speedup: 1.00x
+2025-12-30 01:38:11,875 - root - INFO - Average Precision@5: 0.7333
+2025-12-30 01:43:19,302 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2025-12-30 01:43:19,304 - root - INFO - LSH Index loaded from disk
+2025-12-30 01:43:19,304 - root - INFO - Database loaded from data/embeddings/lsh_test_db.pkl: 50 vectors
+2025-12-30 01:43:19,304 - root - INFO - VectorDatabase initialized with dimension 512, LSH: enabled
+2025-12-30 01:43:19,304 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2025-12-30 01:43:19,304 - root - INFO - Database cleared
+2025-12-30 01:43:19,305 - root - INFO - Using device: cpu
+2025-12-30 01:43:19,451 - root - INFO - ImageProcessor initialized successfully
+2025-12-30 01:43:19,452 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\car
+2025-12-30 01:43:19,485 - root - INFO - Processed 1/10: car_001.jpg -> Dim: 512
+2025-12-30 01:43:19,509 - root - INFO - Processed 2/10: car_002.jpg -> Dim: 512
+2025-12-30 01:43:19,535 - root - INFO - Processed 3/10: car_003.jpg -> Dim: 512
+2025-12-30 01:43:19,562 - root - INFO - Processed 4/10: car_004.jpg -> Dim: 512
+2025-12-30 01:43:19,589 - root - INFO - Processed 5/10: car_005.jpg -> Dim: 512
+2025-12-30 01:43:19,615 - root - INFO - Processed 6/10: car_006.jpg -> Dim: 512
+2025-12-30 01:43:19,636 - root - INFO - Processed 7/10: car_007.jpg -> Dim: 512
+2025-12-30 01:43:19,657 - root - INFO - Processed 8/10: car_008.jpg -> Dim: 512
+2025-12-30 01:43:19,678 - root - INFO - Processed 9/10: car_009.jpg -> Dim: 512
+2025-12-30 01:43:19,699 - root - INFO - Processed 10/10: car_010.jpg -> Dim: 512
+2025-12-30 01:43:19,699 - root - INFO - Successfully processed 10/10 images
+2025-12-30 01:43:19,701 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\animal
+2025-12-30 01:43:19,723 - root - INFO - Processed 1/10: animal_001.jpg -> Dim: 512
+2025-12-30 01:43:19,746 - root - INFO - Processed 2/10: animal_002.jpg -> Dim: 512
+2025-12-30 01:43:19,768 - root - INFO - Processed 3/10: animal_003.jpg -> Dim: 512
+2025-12-30 01:43:19,788 - root - INFO - Processed 4/10: animal_004.jpg -> Dim: 512
+2025-12-30 01:43:19,811 - root - INFO - Processed 5/10: animal_005.jpg -> Dim: 512
+2025-12-30 01:43:19,830 - root - INFO - Processed 6/10: animal_006.jpg -> Dim: 512
+2025-12-30 01:43:19,849 - root - INFO - Processed 7/10: animal_007.jpg -> Dim: 512
+2025-12-30 01:43:19,870 - root - INFO - Processed 8/10: animal_008.jpg -> Dim: 512
+2025-12-30 01:43:19,894 - root - INFO - Processed 9/10: animal_009.jpg -> Dim: 512
+2025-12-30 01:43:19,925 - root - INFO - Processed 10/10: animal_010.jpg -> Dim: 512
+2025-12-30 01:43:19,925 - root - INFO - Successfully processed 10/10 images
+2025-12-30 01:43:19,927 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\building
+2025-12-30 01:43:19,952 - root - INFO - Processed 1/10: building_001.jpg -> Dim: 512
+2025-12-30 01:43:19,974 - root - INFO - Processed 2/10: building_002.jpg -> Dim: 512
+2025-12-30 01:43:19,994 - root - INFO - Processed 3/10: building_003.jpg -> Dim: 512
+2025-12-30 01:43:20,014 - root - INFO - Processed 4/10: building_004.jpg -> Dim: 512
+2025-12-30 01:43:20,034 - root - INFO - Processed 5/10: building_005.jpg -> Dim: 512
+2025-12-30 01:43:20,053 - root - INFO - Processed 6/10: building_006.jpg -> Dim: 512
+2025-12-30 01:43:20,070 - root - INFO - Processed 7/10: building_007.jpg -> Dim: 512
+2025-12-30 01:43:20,089 - root - INFO - Processed 8/10: building_008.jpg -> Dim: 512
+2025-12-30 01:43:20,107 - root - INFO - Processed 9/10: building_009.jpg -> Dim: 512
+2025-12-30 01:43:20,128 - root - INFO - Processed 10/10: building_010.jpg -> Dim: 512
+2025-12-30 01:43:20,128 - root - INFO - Successfully processed 10/10 images
+2025-12-30 01:43:20,130 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\food
+2025-12-30 01:43:20,151 - root - INFO - Processed 1/10: food_001.jpg -> Dim: 512
+2025-12-30 01:43:20,178 - root - INFO - Processed 2/10: food_002.jpg -> Dim: 512
+2025-12-30 01:43:20,203 - root - INFO - Processed 3/10: food_003.jpg -> Dim: 512
+2025-12-30 01:43:20,224 - root - INFO - Processed 4/10: food_004.jpg -> Dim: 512
+2025-12-30 01:43:20,241 - root - INFO - Processed 5/10: food_005.jpg -> Dim: 512
+2025-12-30 01:43:20,260 - root - INFO - Processed 6/10: food_006.jpg -> Dim: 512
+2025-12-30 01:43:20,292 - root - INFO - Processed 7/10: food_007.jpg -> Dim: 512
+2025-12-30 01:43:20,310 - root - INFO - Processed 8/10: food_008.jpg -> Dim: 512
+2025-12-30 01:43:20,330 - root - INFO - Processed 9/10: food_009.jpg -> Dim: 512
+2025-12-30 01:43:20,348 - root - INFO - Processed 10/10: food_010.jpg -> Dim: 512
+2025-12-30 01:43:20,349 - root - INFO - Successfully processed 10/10 images
+2025-12-30 01:43:20,350 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\nature
+2025-12-30 01:43:20,374 - root - INFO - Processed 1/10: nature_001.jpg -> Dim: 512
+2025-12-30 01:43:20,397 - root - INFO - Processed 2/10: nature_002.jpg -> Dim: 512
+2025-12-30 01:43:20,418 - root - INFO - Processed 3/10: nature_003.jpg -> Dim: 512
+2025-12-30 01:43:20,439 - root - INFO - Processed 4/10: nature_004.jpg -> Dim: 512
+2025-12-30 01:43:20,461 - root - INFO - Processed 5/10: nature_005.jpg -> Dim: 512
+2025-12-30 01:43:20,478 - root - INFO - Processed 6/10: nature_006.jpg -> Dim: 512
+2025-12-30 01:43:20,497 - root - INFO - Processed 7/10: nature_007.jpg -> Dim: 512
+2025-12-30 01:43:20,518 - root - INFO - Processed 8/10: nature_008.jpg -> Dim: 512
+2025-12-30 01:43:20,540 - root - INFO - Processed 9/10: nature_009.jpg -> Dim: 512
+2025-12-30 01:43:20,564 - root - INFO - Processed 10/10: nature_010.jpg -> Dim: 512
+2025-12-30 01:43:20,564 - root - INFO - Successfully processed 10/10 images
+2025-12-30 01:43:20,568 - root - INFO - ==================================================
+2025-12-30 01:43:20,568 - root - INFO - Benchmarking Search Methods
+2025-12-30 01:43:20,568 - root - INFO - ==================================================
+2025-12-30 01:43:20,569 - root - INFO - Testing brute-force search...
+2025-12-30 01:43:20,570 - root - INFO - Testing LSH search...
+2025-12-30 01:43:20,571 - root - INFO - Average Brute-force Time: 0.000332s
+2025-12-30 01:43:20,571 - root - INFO - Average LSH Time: 0.000000s
+2025-12-30 01:43:20,571 - root - INFO - Speedup: 0.00x
+2025-12-30 01:43:20,571 - root - INFO - Average Precision@5: 0.6000
+2025-12-30 14:43:52,411 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2025-12-30 14:43:52,414 - root - INFO - LSH Index loaded from disk
+2025-12-30 14:43:52,414 - root - INFO - Database loaded from data/embeddings/lsh_test_db.pkl: 50 vectors
+2025-12-30 14:43:52,414 - root - INFO - VectorDatabase initialized with dimension 512, LSH: enabled
+2025-12-30 14:43:52,414 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2025-12-30 14:43:52,414 - root - INFO - Database cleared
+2025-12-30 14:43:52,414 - root - INFO - Using device: cpu
+2025-12-30 14:43:52,652 - root - INFO - ImageProcessor initialized successfully
+2025-12-30 14:43:52,655 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\car
+2025-12-30 14:43:52,766 - root - INFO - Processed 1/10: car_001.jpg -> Dim: 512
+2025-12-30 14:43:52,785 - root - INFO - Processed 2/10: car_002.jpg -> Dim: 512
+2025-12-30 14:43:52,805 - root - INFO - Processed 3/10: car_003.jpg -> Dim: 512
+2025-12-30 14:43:52,823 - root - INFO - Processed 4/10: car_004.jpg -> Dim: 512
+2025-12-30 14:43:52,841 - root - INFO - Processed 5/10: car_005.jpg -> Dim: 512
+2025-12-30 14:43:52,863 - root - INFO - Processed 6/10: car_006.jpg -> Dim: 512
+2025-12-30 14:43:52,885 - root - INFO - Processed 7/10: car_007.jpg -> Dim: 512
+2025-12-30 14:43:52,910 - root - INFO - Processed 8/10: car_008.jpg -> Dim: 512
+2025-12-30 14:43:52,932 - root - INFO - Processed 9/10: car_009.jpg -> Dim: 512
+2025-12-30 14:43:52,957 - root - INFO - Processed 10/10: car_010.jpg -> Dim: 512
+2025-12-30 14:43:52,957 - root - INFO - Successfully processed 10/10 images
+2025-12-30 14:43:52,960 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\animal
+2025-12-30 14:43:52,981 - root - INFO - Processed 1/10: animal_001.jpg -> Dim: 512
+2025-12-30 14:43:53,002 - root - INFO - Processed 2/10: animal_002.jpg -> Dim: 512
+2025-12-30 14:43:53,019 - root - INFO - Processed 3/10: animal_003.jpg -> Dim: 512
+2025-12-30 14:43:53,040 - root - INFO - Processed 4/10: animal_004.jpg -> Dim: 512
+2025-12-30 14:43:53,059 - root - INFO - Processed 5/10: animal_005.jpg -> Dim: 512
+2025-12-30 14:43:53,079 - root - INFO - Processed 6/10: animal_006.jpg -> Dim: 512
+2025-12-30 14:43:53,100 - root - INFO - Processed 7/10: animal_007.jpg -> Dim: 512
+2025-12-30 14:43:53,121 - root - INFO - Processed 8/10: animal_008.jpg -> Dim: 512
+2025-12-30 14:43:53,144 - root - INFO - Processed 9/10: animal_009.jpg -> Dim: 512
+2025-12-30 14:43:53,168 - root - INFO - Processed 10/10: animal_010.jpg -> Dim: 512
+2025-12-30 14:43:53,168 - root - INFO - Successfully processed 10/10 images
+2025-12-30 14:43:53,169 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\building
+2025-12-30 14:43:53,192 - root - INFO - Processed 1/10: building_001.jpg -> Dim: 512
+2025-12-30 14:43:53,213 - root - INFO - Processed 2/10: building_002.jpg -> Dim: 512
+2025-12-30 14:43:53,233 - root - INFO - Processed 3/10: building_003.jpg -> Dim: 512
+2025-12-30 14:43:53,253 - root - INFO - Processed 4/10: building_004.jpg -> Dim: 512
+2025-12-30 14:43:53,269 - root - INFO - Processed 5/10: building_005.jpg -> Dim: 512
+2025-12-30 14:43:53,287 - root - INFO - Processed 6/10: building_006.jpg -> Dim: 512
+2025-12-30 14:43:53,307 - root - INFO - Processed 7/10: building_007.jpg -> Dim: 512
+2025-12-30 14:43:53,329 - root - INFO - Processed 8/10: building_008.jpg -> Dim: 512
+2025-12-30 14:43:53,352 - root - INFO - Processed 9/10: building_009.jpg -> Dim: 512
+2025-12-30 14:43:53,376 - root - INFO - Processed 10/10: building_010.jpg -> Dim: 512
+2025-12-30 14:43:53,376 - root - INFO - Successfully processed 10/10 images
+2025-12-30 14:43:53,378 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\food
+2025-12-30 14:43:53,400 - root - INFO - Processed 1/10: food_001.jpg -> Dim: 512
+2025-12-30 14:43:53,419 - root - INFO - Processed 2/10: food_002.jpg -> Dim: 512
+2025-12-30 14:43:53,438 - root - INFO - Processed 3/10: food_003.jpg -> Dim: 512
+2025-12-30 14:43:53,457 - root - INFO - Processed 4/10: food_004.jpg -> Dim: 512
+2025-12-30 14:43:53,476 - root - INFO - Processed 5/10: food_005.jpg -> Dim: 512
+2025-12-30 14:43:53,493 - root - INFO - Processed 6/10: food_006.jpg -> Dim: 512
+2025-12-30 14:43:53,515 - root - INFO - Processed 7/10: food_007.jpg -> Dim: 512
+2025-12-30 14:43:53,538 - root - INFO - Processed 8/10: food_008.jpg -> Dim: 512
+2025-12-30 14:43:53,560 - root - INFO - Processed 9/10: food_009.jpg -> Dim: 512
+2025-12-30 14:43:53,585 - root - INFO - Processed 10/10: food_010.jpg -> Dim: 512
+2025-12-30 14:43:53,585 - root - INFO - Successfully processed 10/10 images
+2025-12-30 14:43:53,587 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\nature
+2025-12-30 14:43:53,608 - root - INFO - Processed 1/10: nature_001.jpg -> Dim: 512
+2025-12-30 14:43:53,626 - root - INFO - Processed 2/10: nature_002.jpg -> Dim: 512
+2025-12-30 14:43:53,641 - root - INFO - Processed 3/10: nature_003.jpg -> Dim: 512
+2025-12-30 14:43:53,658 - root - INFO - Processed 4/10: nature_004.jpg -> Dim: 512
+2025-12-30 14:43:53,676 - root - INFO - Processed 5/10: nature_005.jpg -> Dim: 512
+2025-12-30 14:43:53,694 - root - INFO - Processed 6/10: nature_006.jpg -> Dim: 512
+2025-12-30 14:43:53,714 - root - INFO - Processed 7/10: nature_007.jpg -> Dim: 512
+2025-12-30 14:43:53,734 - root - INFO - Processed 8/10: nature_008.jpg -> Dim: 512
+2025-12-30 14:43:53,757 - root - INFO - Processed 9/10: nature_009.jpg -> Dim: 512
+2025-12-30 14:43:53,779 - root - INFO - Processed 10/10: nature_010.jpg -> Dim: 512
+2025-12-30 14:43:53,779 - root - INFO - Successfully processed 10/10 images
+2025-12-30 14:43:53,782 - root - INFO - ==================================================
+2025-12-30 14:43:53,783 - root - INFO - Benchmarking Search Methods
+2025-12-30 14:43:53,783 - root - INFO - ==================================================
+2025-12-30 14:43:53,783 - root - INFO - Testing brute-force search...
+2025-12-30 14:43:53,784 - root - INFO - Testing LSH search...
+2025-12-30 14:43:53,785 - root - INFO - Average Brute-force Time: 0.000332s
+2025-12-30 14:43:53,785 - root - INFO - Average LSH Time: 0.000332s
+2025-12-30 14:43:53,785 - root - INFO - Speedup: 1.00x
+2025-12-30 14:43:53,785 - root - INFO - Average Precision@5: 0.5333
+2026-01-04 14:17:46,179 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2026-01-04 14:17:46,182 - root - INFO - LSH Index loaded from disk
+2026-01-04 14:17:46,182 - root - INFO - Database loaded from data/embeddings/lsh_test_db.pkl: 50 vectors
+2026-01-04 14:17:46,182 - root - INFO - VectorDatabase initialized with dimension 512, LSH: enabled
+2026-01-04 14:17:46,184 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2026-01-04 14:17:46,184 - root - INFO - Database cleared
+2026-01-04 14:17:46,184 - root - INFO - Using device: cpu
+2026-01-04 14:17:46,325 - root - INFO - ImageProcessor initialized successfully
+2026-01-04 14:17:46,327 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\car
+2026-01-04 14:17:46,430 - root - INFO - Processed 1/10: car_001.jpg -> Dim: 512
+2026-01-04 14:17:46,450 - root - INFO - Processed 2/10: car_002.jpg -> Dim: 512
+2026-01-04 14:17:46,467 - root - INFO - Processed 3/10: car_003.jpg -> Dim: 512
+2026-01-04 14:17:46,485 - root - INFO - Processed 4/10: car_004.jpg -> Dim: 512
+2026-01-04 14:17:46,502 - root - INFO - Processed 5/10: car_005.jpg -> Dim: 512
+2026-01-04 14:17:46,520 - root - INFO - Processed 6/10: car_006.jpg -> Dim: 512
+2026-01-04 14:17:46,536 - root - INFO - Processed 7/10: car_007.jpg -> Dim: 512
+2026-01-04 14:17:46,555 - root - INFO - Processed 8/10: car_008.jpg -> Dim: 512
+2026-01-04 14:17:46,574 - root - INFO - Processed 9/10: car_009.jpg -> Dim: 512
+2026-01-04 14:17:46,595 - root - INFO - Processed 10/10: car_010.jpg -> Dim: 512
+2026-01-04 14:17:46,595 - root - INFO - Successfully processed 10/10 images
+2026-01-04 14:17:46,597 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\animal
+2026-01-04 14:17:46,617 - root - INFO - Processed 1/10: animal_001.jpg -> Dim: 512
+2026-01-04 14:17:46,638 - root - INFO - Processed 2/10: animal_002.jpg -> Dim: 512
+2026-01-04 14:17:46,655 - root - INFO - Processed 3/10: animal_003.jpg -> Dim: 512
+2026-01-04 14:17:46,672 - root - INFO - Processed 4/10: animal_004.jpg -> Dim: 512
+2026-01-04 14:17:46,690 - root - INFO - Processed 5/10: animal_005.jpg -> Dim: 512
+2026-01-04 14:17:46,706 - root - INFO - Processed 6/10: animal_006.jpg -> Dim: 512
+2026-01-04 14:17:46,722 - root - INFO - Processed 7/10: animal_007.jpg -> Dim: 512
+2026-01-04 14:17:46,741 - root - INFO - Processed 8/10: animal_008.jpg -> Dim: 512
+2026-01-04 14:17:46,759 - root - INFO - Processed 9/10: animal_009.jpg -> Dim: 512
+2026-01-04 14:17:46,782 - root - INFO - Processed 10/10: animal_010.jpg -> Dim: 512
+2026-01-04 14:17:46,782 - root - INFO - Successfully processed 10/10 images
+2026-01-04 14:17:46,783 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\building
+2026-01-04 14:17:46,805 - root - INFO - Processed 1/10: building_001.jpg -> Dim: 512
+2026-01-04 14:17:46,827 - root - INFO - Processed 2/10: building_002.jpg -> Dim: 512
+2026-01-04 14:17:46,851 - root - INFO - Processed 3/10: building_003.jpg -> Dim: 512
+2026-01-04 14:17:46,873 - root - INFO - Processed 4/10: building_004.jpg -> Dim: 512
+2026-01-04 14:17:46,894 - root - INFO - Processed 5/10: building_005.jpg -> Dim: 512
+2026-01-04 14:17:46,913 - root - INFO - Processed 6/10: building_006.jpg -> Dim: 512
+2026-01-04 14:17:46,932 - root - INFO - Processed 7/10: building_007.jpg -> Dim: 512
+2026-01-04 14:17:46,951 - root - INFO - Processed 8/10: building_008.jpg -> Dim: 512
+2026-01-04 14:17:46,971 - root - INFO - Processed 9/10: building_009.jpg -> Dim: 512
+2026-01-04 14:17:46,993 - root - INFO - Processed 10/10: building_010.jpg -> Dim: 512
+2026-01-04 14:17:46,993 - root - INFO - Successfully processed 10/10 images
+2026-01-04 14:17:46,996 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\food
+2026-01-04 14:17:47,019 - root - INFO - Processed 1/10: food_001.jpg -> Dim: 512
+2026-01-04 14:17:47,042 - root - INFO - Processed 2/10: food_002.jpg -> Dim: 512
+2026-01-04 14:17:47,065 - root - INFO - Processed 3/10: food_003.jpg -> Dim: 512
+2026-01-04 14:17:47,087 - root - INFO - Processed 4/10: food_004.jpg -> Dim: 512
+2026-01-04 14:17:47,108 - root - INFO - Processed 5/10: food_005.jpg -> Dim: 512
+2026-01-04 14:17:47,134 - root - INFO - Processed 6/10: food_006.jpg -> Dim: 512
+2026-01-04 14:17:47,150 - root - INFO - Processed 7/10: food_007.jpg -> Dim: 512
+2026-01-04 14:17:47,169 - root - INFO - Processed 8/10: food_008.jpg -> Dim: 512
+2026-01-04 14:17:47,190 - root - INFO - Processed 9/10: food_009.jpg -> Dim: 512
+2026-01-04 14:17:47,220 - root - INFO - Processed 10/10: food_010.jpg -> Dim: 512
+2026-01-04 14:17:47,220 - root - INFO - Successfully processed 10/10 images
+2026-01-04 14:17:47,221 - root - INFO - Processing 10 images from data/raw_images/sample_dataset\nature
+2026-01-04 14:17:47,247 - root - INFO - Processed 1/10: nature_001.jpg -> Dim: 512
+2026-01-04 14:17:47,271 - root - INFO - Processed 2/10: nature_002.jpg -> Dim: 512
+2026-01-04 14:17:47,304 - root - INFO - Processed 3/10: nature_003.jpg -> Dim: 512
+2026-01-04 14:17:47,325 - root - INFO - Processed 4/10: nature_004.jpg -> Dim: 512
+2026-01-04 14:17:47,343 - root - INFO - Processed 5/10: nature_005.jpg -> Dim: 512
+2026-01-04 14:17:47,360 - root - INFO - Processed 6/10: nature_006.jpg -> Dim: 512
+2026-01-04 14:17:47,377 - root - INFO - Processed 7/10: nature_007.jpg -> Dim: 512
+2026-01-04 14:17:47,395 - root - INFO - Processed 8/10: nature_008.jpg -> Dim: 512
+2026-01-04 14:17:47,421 - root - INFO - Processed 9/10: nature_009.jpg -> Dim: 512
+2026-01-04 14:17:47,449 - root - INFO - Processed 10/10: nature_010.jpg -> Dim: 512
+2026-01-04 14:17:47,449 - root - INFO - Successfully processed 10/10 images
+2026-01-04 14:17:47,453 - root - INFO - ==================================================
+2026-01-04 14:17:47,454 - root - INFO - Benchmarking Search Methods
+2026-01-04 14:17:47,454 - root - INFO - ==================================================
+2026-01-04 14:17:47,454 - root - INFO - Testing brute-force search...
+2026-01-04 14:17:47,455 - root - INFO - Testing LSH search...
+2026-01-04 14:17:47,456 - root - INFO - Average Brute-force Time: 0.000332s
+2026-01-04 14:17:47,456 - root - INFO - Average LSH Time: 0.000332s
+2026-01-04 14:17:47,456 - root - INFO - Speedup: 1.00x
+2026-01-04 14:17:47,456 - root - INFO - Average Precision@5: 0.7333
+2026-01-04 14:29:33,349 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2026-01-04 14:29:33,351 - root - INFO - LSH Index loaded from disk
+2026-01-04 14:29:33,352 - root - INFO - Database loaded from data/embeddings/lsh_test_db.pkl: 50 vectors
+2026-01-04 14:29:33,352 - root - INFO - VectorDatabase initialized with dimension 512, LSH: enabled
+2026-01-04 14:29:33,352 - root - INFO - Using device: cpu
+2026-01-04 14:29:33,523 - root - INFO - ImageProcessor initialized successfully
+2026-01-04 16:41:58,430 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2026-01-04 16:41:58,432 - root - INFO - LSH Index loaded from disk
+2026-01-04 16:41:58,432 - root - INFO - Database loaded from data/embeddings/lsh_test_db.pkl: 50 vectors
+2026-01-04 16:41:58,432 - root - INFO - VectorDatabase initialized with dimension 512, LSH: enabled
+2026-01-04 16:41:58,433 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2026-01-04 16:41:58,433 - root - INFO - Database cleared
+2026-01-04 16:41:58,433 - root - INFO - Using device: cpu
+2026-01-04 16:41:58,564 - root - INFO - ImageProcessor initialized successfully
+2026-01-04 16:41:58,566 - root - INFO - Processing 10 images from data\raw_images\sample_dataset\car
+2026-01-04 16:41:58,606 - root - INFO - Processed 1/10: car_001.jpg -> Dim: 512
+2026-01-04 16:41:58,632 - root - INFO - Processed 2/10: car_002.jpg -> Dim: 512
+2026-01-04 16:41:58,653 - root - INFO - Processed 3/10: car_003.jpg -> Dim: 512
+2026-01-04 16:41:58,673 - root - INFO - Processed 4/10: car_004.jpg -> Dim: 512
+2026-01-04 16:41:58,693 - root - INFO - Processed 5/10: car_005.jpg -> Dim: 512
+2026-01-04 16:41:58,711 - root - INFO - Processed 6/10: car_006.jpg -> Dim: 512
+2026-01-04 16:41:58,729 - root - INFO - Processed 7/10: car_007.jpg -> Dim: 512
+2026-01-04 16:41:58,746 - root - INFO - Processed 8/10: car_008.jpg -> Dim: 512
+2026-01-04 16:41:58,763 - root - INFO - Processed 9/10: car_009.jpg -> Dim: 512
+2026-01-04 16:41:58,782 - root - INFO - Processed 10/10: car_010.jpg -> Dim: 512
+2026-01-04 16:41:58,782 - root - INFO - Successfully processed 10/10 images
+2026-01-04 16:41:58,783 - root - INFO - Processing 10 images from data\raw_images\sample_dataset\animal
+2026-01-04 16:41:58,800 - root - INFO - Processed 1/10: animal_001.jpg -> Dim: 512
+2026-01-04 16:41:58,819 - root - INFO - Processed 2/10: animal_002.jpg -> Dim: 512
+2026-01-04 16:41:58,839 - root - INFO - Processed 3/10: animal_003.jpg -> Dim: 512
+2026-01-04 16:41:58,858 - root - INFO - Processed 4/10: animal_004.jpg -> Dim: 512
+2026-01-04 16:41:58,881 - root - INFO - Processed 5/10: animal_005.jpg -> Dim: 512
+2026-01-04 16:41:58,902 - root - INFO - Processed 6/10: animal_006.jpg -> Dim: 512
+2026-01-04 16:41:58,923 - root - INFO - Processed 7/10: animal_007.jpg -> Dim: 512
+2026-01-04 16:41:58,943 - root - INFO - Processed 8/10: animal_008.jpg -> Dim: 512
+2026-01-04 16:41:58,959 - root - INFO - Processed 9/10: animal_009.jpg -> Dim: 512
+2026-01-04 16:41:58,977 - root - INFO - Processed 10/10: animal_010.jpg -> Dim: 512
+2026-01-04 16:41:58,977 - root - INFO - Successfully processed 10/10 images
+2026-01-04 16:41:58,979 - root - INFO - Processing 10 images from data\raw_images\sample_dataset\building
+2026-01-04 16:41:58,995 - root - INFO - Processed 1/10: building_001.jpg -> Dim: 512
+2026-01-04 16:41:59,013 - root - INFO - Processed 2/10: building_002.jpg -> Dim: 512
+2026-01-04 16:41:59,033 - root - INFO - Processed 3/10: building_003.jpg -> Dim: 512
+2026-01-04 16:41:59,053 - root - INFO - Processed 4/10: building_004.jpg -> Dim: 512
+2026-01-04 16:41:59,074 - root - INFO - Processed 5/10: building_005.jpg -> Dim: 512
+2026-01-04 16:41:59,095 - root - INFO - Processed 6/10: building_006.jpg -> Dim: 512
+2026-01-04 16:41:59,118 - root - INFO - Processed 7/10: building_007.jpg -> Dim: 512
+2026-01-04 16:41:59,138 - root - INFO - Processed 8/10: building_008.jpg -> Dim: 512
+2026-01-04 16:41:59,155 - root - INFO - Processed 9/10: building_009.jpg -> Dim: 512
+2026-01-04 16:41:59,171 - root - INFO - Processed 10/10: building_010.jpg -> Dim: 512
+2026-01-04 16:41:59,172 - root - INFO - Successfully processed 10/10 images
+2026-01-04 16:41:59,173 - root - INFO - Processing 10 images from data\raw_images\sample_dataset\food
+2026-01-04 16:41:59,188 - root - INFO - Processed 1/10: food_001.jpg -> Dim: 512
+2026-01-04 16:41:59,205 - root - INFO - Processed 2/10: food_002.jpg -> Dim: 512
+2026-01-04 16:41:59,222 - root - INFO - Processed 3/10: food_003.jpg -> Dim: 512
+2026-01-04 16:41:59,241 - root - INFO - Processed 4/10: food_004.jpg -> Dim: 512
+2026-01-04 16:41:59,261 - root - INFO - Processed 5/10: food_005.jpg -> Dim: 512
+2026-01-04 16:41:59,280 - root - INFO - Processed 6/10: food_006.jpg -> Dim: 512
+2026-01-04 16:41:59,302 - root - INFO - Processed 7/10: food_007.jpg -> Dim: 512
+2026-01-04 16:41:59,322 - root - INFO - Processed 8/10: food_008.jpg -> Dim: 512
+2026-01-04 16:41:59,342 - root - INFO - Processed 9/10: food_009.jpg -> Dim: 512
+2026-01-04 16:41:59,361 - root - INFO - Processed 10/10: food_010.jpg -> Dim: 512
+2026-01-04 16:41:59,361 - root - INFO - Successfully processed 10/10 images
+2026-01-04 16:41:59,362 - root - INFO - Processing 10 images from data\raw_images\sample_dataset\nature
+2026-01-04 16:41:59,379 - root - INFO - Processed 1/10: nature_001.jpg -> Dim: 512
+2026-01-04 16:41:59,392 - root - INFO - Processed 2/10: nature_002.jpg -> Dim: 512
+2026-01-04 16:41:59,411 - root - INFO - Processed 3/10: nature_003.jpg -> Dim: 512
+2026-01-04 16:41:59,429 - root - INFO - Processed 4/10: nature_004.jpg -> Dim: 512
+2026-01-04 16:41:59,447 - root - INFO - Processed 5/10: nature_005.jpg -> Dim: 512
+2026-01-04 16:41:59,467 - root - INFO - Processed 6/10: nature_006.jpg -> Dim: 512
+2026-01-04 16:41:59,485 - root - INFO - Processed 7/10: nature_007.jpg -> Dim: 512
+2026-01-04 16:41:59,506 - root - INFO - Processed 8/10: nature_008.jpg -> Dim: 512
+2026-01-04 16:41:59,526 - root - INFO - Processed 9/10: nature_009.jpg -> Dim: 512
+2026-01-04 16:41:59,547 - root - INFO - Processed 10/10: nature_010.jpg -> Dim: 512
+2026-01-04 16:41:59,547 - root - INFO - Successfully processed 10/10 images
+2026-01-04 16:42:24,773 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2026-01-04 16:42:24,903 - root - INFO - LSH Index loaded from disk
+2026-01-04 16:42:24,903 - root - INFO - Database loaded from D:\LSH\src\data\embeddings\caltech101_db.pkl: 9145 vectors
+2026-01-04 16:42:24,903 - root - INFO - VectorDatabase initialized with dimension 512, LSH: enabled
+2026-01-04 16:42:24,903 - root - INFO - Using device: cpu
+2026-01-04 16:42:25,054 - root - INFO - ImageProcessor initialized successfully
+2026-01-04 20:32:40,927 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2026-01-04 20:32:40,928 - root - INFO - No existing database found at data/embeddings/lsh_test_db.pkl, starting fresh
+2026-01-04 20:32:40,929 - root - INFO - VectorDatabase initialized with dimension 512, LSH: enabled
+2026-01-04 20:32:40,929 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2026-01-04 20:32:40,929 - root - INFO - Database cleared
+2026-01-04 20:32:40,929 - root - INFO - Using device: cpu
+2026-01-04 20:32:41,141 - root - INFO - ImageProcessor initialized successfully
+2026-01-04 20:32:41,143 - root - INFO - Processing 10 images from data\raw_images\sample_dataset\car
+2026-01-04 20:32:41,172 - root - INFO - Processed 1/10: car_001.jpg -> Dim: 512
+2026-01-04 20:32:41,190 - root - INFO - Processed 2/10: car_002.jpg -> Dim: 512
+2026-01-04 20:32:41,208 - root - INFO - Processed 3/10: car_003.jpg -> Dim: 512
+2026-01-04 20:32:41,225 - root - INFO - Processed 4/10: car_004.jpg -> Dim: 512
+2026-01-04 20:32:41,241 - root - INFO - Processed 5/10: car_005.jpg -> Dim: 512
+2026-01-04 20:32:41,260 - root - INFO - Processed 6/10: car_006.jpg -> Dim: 512
+2026-01-04 20:32:41,277 - root - INFO - Processed 7/10: car_007.jpg -> Dim: 512
+2026-01-04 20:32:41,295 - root - INFO - Processed 8/10: car_008.jpg -> Dim: 512
+2026-01-04 20:32:41,316 - root - INFO - Processed 9/10: car_009.jpg -> Dim: 512
+2026-01-04 20:32:41,337 - root - INFO - Processed 10/10: car_010.jpg -> Dim: 512
+2026-01-04 20:32:41,338 - root - INFO - Successfully processed 10/10 images
+2026-01-04 20:32:41,339 - root - INFO - Processing 10 images from data\raw_images\sample_dataset\animal
+2026-01-04 20:32:41,362 - root - INFO - Processed 1/10: animal_001.jpg -> Dim: 512
+2026-01-04 20:32:41,386 - root - INFO - Processed 2/10: animal_002.jpg -> Dim: 512
+2026-01-04 20:32:41,409 - root - INFO - Processed 3/10: animal_003.jpg -> Dim: 512
+2026-01-04 20:32:41,430 - root - INFO - Processed 4/10: animal_004.jpg -> Dim: 512
+2026-01-04 20:32:41,452 - root - INFO - Processed 5/10: animal_005.jpg -> Dim: 512
+2026-01-04 20:32:41,474 - root - INFO - Processed 6/10: animal_006.jpg -> Dim: 512
+2026-01-04 20:32:41,494 - root - INFO - Processed 7/10: animal_007.jpg -> Dim: 512
+2026-01-04 20:32:41,517 - root - INFO - Processed 8/10: animal_008.jpg -> Dim: 512
+2026-01-04 20:32:41,540 - root - INFO - Processed 9/10: animal_009.jpg -> Dim: 512
+2026-01-04 20:32:41,557 - root - INFO - Processed 10/10: animal_010.jpg -> Dim: 512
+2026-01-04 20:32:41,558 - root - INFO - Successfully processed 10/10 images
+2026-01-04 20:32:41,559 - root - INFO - Processing 10 images from data\raw_images\sample_dataset\building
+2026-01-04 20:32:41,579 - root - INFO - Processed 1/10: building_001.jpg -> Dim: 512
+2026-01-04 20:32:41,599 - root - INFO - Processed 2/10: building_002.jpg -> Dim: 512
+2026-01-04 20:32:41,618 - root - INFO - Processed 3/10: building_003.jpg -> Dim: 512
+2026-01-04 20:32:41,639 - root - INFO - Processed 4/10: building_004.jpg -> Dim: 512
+2026-01-04 20:32:41,661 - root - INFO - Processed 5/10: building_005.jpg -> Dim: 512
+2026-01-04 20:32:41,695 - root - INFO - Processed 6/10: building_006.jpg -> Dim: 512
+2026-01-04 20:32:41,714 - root - INFO - Processed 7/10: building_007.jpg -> Dim: 512
+2026-01-04 20:32:41,732 - root - INFO - Processed 8/10: building_008.jpg -> Dim: 512
+2026-01-04 20:32:41,749 - root - INFO - Processed 9/10: building_009.jpg -> Dim: 512
+2026-01-04 20:32:41,767 - root - INFO - Processed 10/10: building_010.jpg -> Dim: 512
+2026-01-04 20:32:41,767 - root - INFO - Successfully processed 10/10 images
+2026-01-04 20:32:41,769 - root - INFO - Processing 10 images from data\raw_images\sample_dataset\food
+2026-01-04 20:32:41,787 - root - INFO - Processed 1/10: food_001.jpg -> Dim: 512
+2026-01-04 20:32:41,806 - root - INFO - Processed 2/10: food_002.jpg -> Dim: 512
+2026-01-04 20:32:41,827 - root - INFO - Processed 3/10: food_003.jpg -> Dim: 512
+2026-01-04 20:32:41,855 - root - INFO - Processed 4/10: food_004.jpg -> Dim: 512
+2026-01-04 20:32:41,881 - root - INFO - Processed 5/10: food_005.jpg -> Dim: 512
+2026-01-04 20:32:41,901 - root - INFO - Processed 6/10: food_006.jpg -> Dim: 512
+2026-01-04 20:32:41,919 - root - INFO - Processed 7/10: food_007.jpg -> Dim: 512
+2026-01-04 20:32:41,937 - root - INFO - Processed 8/10: food_008.jpg -> Dim: 512
+2026-01-04 20:32:41,952 - root - INFO - Processed 9/10: food_009.jpg -> Dim: 512
+2026-01-04 20:32:41,970 - root - INFO - Processed 10/10: food_010.jpg -> Dim: 512
+2026-01-04 20:32:41,970 - root - INFO - Successfully processed 10/10 images
+2026-01-04 20:32:41,971 - root - INFO - Processing 10 images from data\raw_images\sample_dataset\nature
+2026-01-04 20:32:41,988 - root - INFO - Processed 1/10: nature_001.jpg -> Dim: 512
+2026-01-04 20:32:42,007 - root - INFO - Processed 2/10: nature_002.jpg -> Dim: 512
+2026-01-04 20:32:42,026 - root - INFO - Processed 3/10: nature_003.jpg -> Dim: 512
+2026-01-04 20:32:42,049 - root - INFO - Processed 4/10: nature_004.jpg -> Dim: 512
+2026-01-04 20:32:42,072 - root - INFO - Processed 5/10: nature_005.jpg -> Dim: 512
+2026-01-04 20:32:42,094 - root - INFO - Processed 6/10: nature_006.jpg -> Dim: 512
+2026-01-04 20:32:42,114 - root - INFO - Processed 7/10: nature_007.jpg -> Dim: 512
+2026-01-04 20:32:42,134 - root - INFO - Processed 8/10: nature_008.jpg -> Dim: 512
+2026-01-04 20:32:42,151 - root - INFO - Processed 9/10: nature_009.jpg -> Dim: 512
+2026-01-04 20:32:42,169 - root - INFO - Processed 10/10: nature_010.jpg -> Dim: 512
+2026-01-04 20:32:42,169 - root - INFO - Successfully processed 10/10 images
+2026-01-04 20:34:07,045 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2026-01-04 20:34:07,192 - root - INFO - LSH Index loaded from disk
+2026-01-04 20:34:07,192 - root - INFO - Database loaded from D:\LSH\src\data\embeddings\caltech101_db.pkl: 9145 vectors
+2026-01-04 20:34:07,192 - root - INFO - VectorDatabase initialized with dimension 512, LSH: enabled
+2026-01-04 20:34:07,192 - root - INFO - Using device: cpu
+2026-01-04 20:34:07,350 - root - INFO - ImageProcessor initialized successfully
+2026-01-30 21:59:20,061 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2026-01-30 21:59:20,278 - root - INFO - LSH Index loaded from disk
+2026-01-30 21:59:20,279 - root - INFO - Database loaded from D:\LSH\src\data\embeddings\caltech101_db.pkl: 9145 vectors
+2026-01-30 21:59:20,279 - root - INFO - VectorDatabase initialized with dimension 512, LSH: enabled
+2026-01-30 21:59:20,279 - root - INFO - Using device: cpu
+2026-01-30 21:59:20,627 - root - INFO - ImageProcessor initialized successfully
+2026-01-30 22:05:40,874 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2026-01-30 22:05:41,102 - root - INFO - LSH Index loaded from disk
+2026-01-30 22:05:41,103 - root - INFO - Database loaded from D:\LSH\src\data\embeddings\caltech101_db.pkl: 9145 vectors
+2026-01-30 22:05:41,103 - root - INFO - VectorDatabase initialized with dimension 512, LSH: enabled
+2026-01-30 22:05:41,103 - root - INFO - Using device: cpu
+2026-01-30 22:05:41,445 - root - INFO - ImageProcessor initialized successfully
+2026-01-30 22:30:34,809 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2026-01-30 22:30:34,953 - root - INFO - LSH Index loaded from disk
+2026-01-30 22:30:34,954 - root - INFO - Database loaded from D:\LSH\src\data\embeddings\caltech101_db.pkl: 9145 vectors
+2026-01-30 22:30:34,954 - root - INFO - VectorDatabase initialized with dimension 512, LSH: enabled
+2026-01-30 22:30:34,954 - root - INFO - Using device: cpu
+2026-01-30 22:30:35,109 - root - INFO - ImageProcessor initialized successfully
+2026-01-30 22:33:12,028 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2026-01-30 22:33:12,263 - root - INFO - LSH Index loaded from disk
+2026-01-30 22:33:12,263 - root - INFO - Database loaded from D:\LSH\src\data\embeddings\caltech101_db.pkl: 9145 vectors
+2026-01-30 22:33:12,263 - root - INFO - VectorDatabase initialized with dimension 512, LSH: enabled
+2026-01-30 22:33:12,263 - root - INFO - Using device: cpu
+2026-01-30 22:33:12,534 - root - INFO - ImageProcessor initialized successfully
+2026-01-30 23:24:38,242 - root - INFO - 🔒 Thread-safe mode enabled
+2026-01-30 23:24:38,245 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2026-01-30 23:24:38,410 - root - INFO - LSH Index loaded from disk
+2026-01-30 23:24:38,410 - root - INFO - Database loaded from D:\LSH\src\data\embeddings\caltech101_db.pkl: 9145 vectors
+2026-01-30 23:24:38,411 - root - INFO - VectorDatabase initialized with dimension 512, LSH: enabled, HNSW: disabled
+2026-01-30 23:24:38,411 - root - INFO - Using device: cpu
+2026-01-30 23:24:38,693 - root - INFO - ImageProcessor initialized successfully
+2026-01-30 23:59:38,525 - root - INFO - 🔒 Thread-safe mode enabled
+2026-01-30 23:59:38,525 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2026-01-30 23:59:38,731 - root - INFO - LSH Index loaded from disk
+2026-01-30 23:59:38,731 - root - INFO - Database loaded from D:\LSH\src\data\embeddings\caltech101_db.pkl: 9145 vectors
+2026-01-30 23:59:38,731 - root - INFO - VectorDatabase initialized with dimension 512, LSH: enabled, HNSW: disabled
+2026-01-30 23:59:38,732 - root - INFO - Using device: cpu
+2026-01-30 23:59:38,959 - root - INFO - ImageProcessor initialized successfully
+2026-01-31 00:36:55,300 - root - INFO - 🔒 Thread-safe mode enabled
+2026-01-31 00:36:55,301 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2026-01-31 00:36:55,458 - root - INFO - LSH Index loaded from disk
+2026-01-31 00:36:55,458 - root - INFO - Database loaded from D:\LSH\src\data\embeddings\caltech101_db.pkl: 9145 vectors
+2026-01-31 00:36:55,458 - root - INFO - VectorDatabase initialized with dimension 512, LSH: enabled, HNSW: disabled
+2026-01-31 00:36:55,458 - root - INFO - Using device: cpu
+2026-01-31 00:36:55,680 - root - INFO - ImageProcessor initialized successfully
+2026-01-31 14:54:49,101 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
+2026-01-31 14:55:54,840 - root - INFO - Using device: cpu
+2026-01-31 14:55:55,093 - root - INFO - ImageProcessor initialized successfully
+2026-01-31 14:55:55,094 - root - INFO - ✅ HNSW search method added to UI
