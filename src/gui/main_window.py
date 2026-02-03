@@ -14,7 +14,7 @@ import time
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.append(str(PROJECT_ROOT))
 
-# ابتدا ماژول‌هشای torch را import کنید (قبل از PyQt)
+# ابتدا ماژولهای torch را import کنید (قبل از PyQt)
 from utils.image_processor import ImageProcessor
 from core.vector_db import VectorDatabase
 
@@ -65,7 +65,6 @@ class BuildDatabaseThread(QThread):
             for idx, (image_id, embedding, metadata) in enumerate(results):
                 metadata['category'] = self.category_name
                 unique_id = f"{self.category_name}_{image_id}"
-
                 self.vector_db.add_vector(unique_id, embedding, metadata)
 
                 progress = int((idx + 1) / total * 100)
@@ -73,10 +72,8 @@ class BuildDatabaseThread(QThread):
 
             elapsed = time.time() - start_time
             self.finished.emit(total, elapsed)
-
         except Exception as e:
             self.error.emit(str(e))
-
 
 
 class SearchThread(QThread):
@@ -126,7 +123,6 @@ class SearchThread(QThread):
 
             elapsed = time.time() - start_time
             self.finished.emit(results, elapsed, method)
-
         except Exception as e:
             self.error.emit(str(e))
 
@@ -146,7 +142,7 @@ class EmbeddingCanvas(FigureCanvas):
 
         if len(vector_db.vectors) == 0:
             self.axes.text(0.5, 0.5, 'No data in database',
-                           ha='center', va='center', fontsize=14)
+                          ha='center', va='center', fontsize=14)
             self.draw()
             return
 
@@ -204,28 +200,54 @@ class EmbeddingCanvas(FigureCanvas):
         self.draw()
 
 
-class ImageLabel(QLabel):
-    """Label برای نمایش تصویر با اطلاعات"""
+class ImageLabel(QWidget):
+    """Widget برای نمایش تصویر با اطلاعات - نسخه اصلاح شده"""
 
     def __init__(self, image_path, similarity=None, vec_id=None):
         super().__init__()
-        self.setAlignment(Qt.AlignCenter)
-        self.setStyleSheet("border: 2px solid #ccc; border-radius: 5px; padding: 5px;")
+        self.setStyleSheet("border: 2px solid #ccc; border-radius: 5px; padding: 5px; background-color: white;")
         self.setFixedSize(200, 250)
 
+        # Layout اصلی عمودی
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(5, 5, 5, 5)
+        layout.setSpacing(5)
+
+        # Label برای نمایش عکس
+        self.image_label = QLabel()
+        self.image_label.setAlignment(Qt.AlignCenter)
+        self.image_label.setFixedSize(180, 180)
+        self.image_label.setStyleSheet("border: 1px solid #ddd; background-color: #fafafa;")
+
+        # بارگذاری عکس
         pixmap = QPixmap(image_path)
         if not pixmap.isNull():
             pixmap = pixmap.scaled(180, 180, Qt.KeepAspectRatio, Qt.SmoothTransformation)
-            self.setPixmap(pixmap)
+            self.image_label.setPixmap(pixmap)
+        else:
+            # Placeholder برای عکس یافت نشده
+            self.image_label.setText("📷\n\nImage\nNot Found")
+            self.image_label.setStyleSheet(
+                "border: 1px dashed #ff6b6b; background-color: #fff5f5; "
+                "color: #ff6b6b; font-size: 11px;"
+            )
+            self.image_label.setWordWrap(True)
 
-        if similarity is not None:
-            text = f"{vec_id}\nSimilarity: {similarity:.4f}"
-            self.setText(text)
-            self.setWordWrap(True)
+        layout.addWidget(self.image_label)
+
+        # Label برای نمایش اطلاعات (vec_id و similarity)
+        if similarity is not None and vec_id is not None:
+            info_label = QLabel(f"<b>{vec_id}</b><br>Similarity: {similarity:.4f}")
+            info_label.setAlignment(Qt.AlignCenter)
+            info_label.setWordWrap(True)
+            info_label.setStyleSheet("font-size: 10px; color: #555; padding: 3px;")
+            layout.addWidget(info_label)
+
+        layout.addStretch()
 
 
 class CBIRMainWindow(QMainWindow):
-    """پنجره اصلی سیستم جستجوی تصویر (با قابلیت‌های بونوس)"""
+    """پنجره اصلی سیستم جستجوی تصویر (با قابلیتهای بونوس)"""
 
     def __init__(self):
         super().__init__()
@@ -250,7 +272,6 @@ class CBIRMainWindow(QMainWindow):
 
         tabs = QTabWidget()
         main_layout.addWidget(tabs)
-
 
         db_tab = QWidget()
         tabs.addTab(db_tab, "📦 Database Management")
@@ -278,6 +299,57 @@ class CBIRMainWindow(QMainWindow):
         self.setup_stats_tab(stats_tab)
 
         self.statusBar().showMessage("Ready")
+
+    # ========== متد جدید: پیدا کردن مسیر عکس ==========
+    def find_image_path(self, stored_path):
+        """
+        ✅ پیدا کردن مسیر صحیح عکس از روی مسیر ذخیره شده
+
+        Args:
+            stored_path: مسیر ذخیره شده در metadata
+
+        Returns:
+            Path object معتبر یا None
+        """
+        if not stored_path:
+            return None
+
+        img_path = Path(stored_path)
+
+        # لیست مسیرهای احتمالی
+        search_locations = [
+            img_path,  # مسیر کامل
+            PROJECT_ROOT / stored_path,  # نسبت به root
+            PROJECT_ROOT / img_path.name,  # فقط نام فایل در root
+        ]
+
+        # اضافه کردن پوشه‌های data
+        data_folders = [
+            "data/raw_images",
+            "data/raw_images/sample_synthetic",
+            "data/caltech101/images/101_ObjectCategories",
+        ]
+
+        for folder in data_folders:
+            # جستجو با نام فایل
+            search_locations.append(PROJECT_ROOT / folder / img_path.name)
+
+            # جستجو در زیرپوشه‌ها (برای دسته‌بندی‌ها)
+            if '/' in stored_path or '\\' in stored_path:
+                parts = Path(stored_path).parts
+                for i in range(len(parts)):
+                    partial_path = Path(*parts[i:])
+                    search_locations.append(PROJECT_ROOT / folder / partial_path)
+
+        # پیدا کردن اولین مسیر معتبر
+        for path in search_locations:
+            try:
+                if path.exists() and path.is_file():
+                    return path
+            except:
+                continue
+
+        return None
 
     def setup_database_tab(self, parent):
         layout = QVBoxLayout(parent)
@@ -371,6 +443,24 @@ class CBIRMainWindow(QMainWindow):
 
         layout.addStretch()
 
+    def generate_synthetic_image(self, category):
+        """تولید تصویر مصنوعی برای یک دسته"""
+        img = np.random.randint(0, 255, (224, 224, 3), dtype=np.uint8)
+
+        # رنگ‌های متفاوت برای هر دسته
+        color_map = {
+            'car': (200, 50, 50),
+            'animal': (50, 200, 50),
+            'building': (100, 100, 200),
+            'food': (200, 200, 50),
+            'nature': (50, 150, 100)
+        }
+
+        color = color_map.get(category, (128, 128, 128))
+        cv2.rectangle(img, (50, 50), (174, 174), color, -1)
+        cv2.putText(img, category, (70, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+
+        return img
 
     def build_sample_dataset_and_database(self):
         """ساخت دیتاست مصنوعی + پر کردن دیتابیس (کاملاً خودکار)"""
@@ -380,6 +470,7 @@ class CBIRMainWindow(QMainWindow):
             "This will CLEAR current database and build a new synthetic dataset.\nContinue?",
             QMessageBox.Yes | QMessageBox.No
         )
+
         if reply != QMessageBox.Yes:
             return
 
@@ -396,8 +487,8 @@ class CBIRMainWindow(QMainWindow):
             total_images = len(categories) * num_per_cat
             processed = 0
 
-            # پوشه ذخیره تصاویر (اختیاری برای debug)
-            sample_root = Path("data/raw_images/sample_synthetic")
+            # پوشه ذخیره تصاویر
+            sample_root = PROJECT_ROOT / "data" / "raw_images" / "sample_synthetic"
             sample_root.mkdir(parents=True, exist_ok=True)
 
             start_time = time.time()
@@ -413,12 +504,17 @@ class CBIRMainWindow(QMainWindow):
 
                     cv2.imwrite(str(img_path), img)
 
-                    # استخراج embedding با ImageProcessor
+                    # استخراج embedding
                     embedding = self.image_processor.process_image(str(img_path))
+
+                    # ✅ ذخیره مسیر کامل
                     metadata = {
-                        "image_path": str(img_path),
-                        "category": cat
+                        "image_path": str(img_path.resolve()),
+                        "relative_path": str(img_path.relative_to(PROJECT_ROOT)),
+                        "category": cat,
+                        "filename": filename
                     }
+
                     vec_id = f"{cat}_{i+1:03d}"
                     self.vector_db.add_vector(vec_id, embedding, metadata)
 
@@ -437,6 +533,7 @@ class CBIRMainWindow(QMainWindow):
                 f"\n✅ Synthetic dataset built with {total_images} images in {elapsed:.2f} seconds"
             )
             self.db_log.append(f"💾 Database saved to {self.db_path}\n")
+
             self.statusBar().showMessage(
                 f"Synthetic database ready: {len(self.vector_db.vectors)} images"
             )
@@ -449,14 +546,10 @@ class CBIRMainWindow(QMainWindow):
                 "Success",
                 f"Synthetic dataset & database built!\nTotal images: {len(self.vector_db.vectors)}"
             )
-
         except Exception as e:
             self.sample_progress.setVisible(False)
             QMessageBox.critical(self, "Error", f"Failed to build synthetic dataset:\n{str(e)}")
             logging.error(f"Synthetic dataset build error: {e}")
-
-    # ---------- بقیه متدهای قبلی (بدون تغییر) ----------
-
 
     def select_image_folder(self):
         """انتخاب پوشه تصاویر"""
@@ -464,7 +557,6 @@ class CBIRMainWindow(QMainWindow):
         if folder:
             self.folder_path_label.setText(folder)
             self.selected_folder = folder
-
 
     def build_database(self):
         """ساخت دیتابیس از پوشه تصاویر"""
@@ -493,11 +585,31 @@ class CBIRMainWindow(QMainWindow):
             self.selected_folder,
             category
         )
+
         self.build_thread.progress.connect(self.on_build_progress)
         self.build_thread.finished.connect(self.on_build_finished)
         self.build_thread.error.connect(self.on_build_error)
         self.build_thread.start()
 
+    def on_build_progress(self, percentage, message):
+        self.build_progress.setValue(percentage)
+        self.statusBar().showMessage(message)
+
+    def on_build_finished(self, num_images, elapsed):
+        self.build_progress.setVisible(False)
+        self.build_db_btn.setEnabled(True)
+
+        self.db_log.append(f"✅ Added {num_images} images in {elapsed:.2f} seconds")
+        self.db_log.append(f"💾 Auto-saved to disk\n")
+
+        self.statusBar().showMessage(f"Database updated: {len(self.vector_db.vectors)} total images")
+        self.update_stats()
+
+    def on_build_error(self, error_msg):
+        self.build_progress.setVisible(False)
+        self.build_db_btn.setEnabled(True)
+        self.db_log.append(f"❌ Error: {error_msg}\n")
+        QMessageBox.critical(self, "Error", f"Failed to build database:\n{error_msg}")
 
     def clear_database(self):
         """پاک کردن دیتابیس"""
@@ -514,7 +626,6 @@ class CBIRMainWindow(QMainWindow):
             self.statusBar().showMessage("Database cleared")
             self.update_stats()
 
-
     def save_database(self):
         """ذخیره دیتابیس"""
         try:
@@ -523,7 +634,6 @@ class CBIRMainWindow(QMainWindow):
             QMessageBox.information(self, "Success", "Database saved successfully!")
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to save database:\n{str(e)}")
-
 
     def load_database(self):
         """بارگذاری دیتابیس"""
@@ -542,11 +652,14 @@ class CBIRMainWindow(QMainWindow):
                     use_lsh=True,
                     lsh_params={'num_tables': 8, 'hash_size': 10, 'seed': 42}
                 )
+
                 self.db_path = file_path
                 self.db_log.append(f"📂 Loaded database from {file_path}\n")
                 self.db_log.append(f"   Total images: {len(self.vector_db.vectors)}\n")
+
                 self.update_stats()
                 self.refresh_embedding_plot()
+
                 QMessageBox.information(
                     self,
                     "Success",
@@ -554,7 +667,6 @@ class CBIRMainWindow(QMainWindow):
                 )
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to load database:\n{str(e)}")
-
 
     def setup_search_tab(self, parent):
         layout = QVBoxLayout(parent)
@@ -574,7 +686,6 @@ class CBIRMainWindow(QMainWindow):
         self.top_k_spinbox.setValue(10)
         control_layout.addWidget(self.top_k_spinbox)
 
-        # ✅ فقط پیش‌فرض‌ها (HNSW بعداً اضافه میشه)
         self.search_method_combo = QComboBox()
         self.search_method_combo.addItems(["LSH (Fast)", "Brute-force (Exact)"])
         control_layout.addWidget(self.search_method_combo)
@@ -586,8 +697,8 @@ class CBIRMainWindow(QMainWindow):
             "font-size: 14px; padding: 10px; background-color: #4CAF50; color: white;"
         )
         control_layout.addWidget(self.search_btn)
-
         control_layout.addStretch()
+
         layout.addLayout(control_layout)
 
         self.progress_bar = QProgressBar()
@@ -640,10 +751,9 @@ class CBIRMainWindow(QMainWindow):
         layout.addWidget(self.perf_canvas)
 
     def setup_bonus_tab(self, parent):
-        """✅ BONUS: تب مقایسه کامل همه الگوریتم‌ها"""
+        """✅ BONUS: تب مقایسه کامل همه الگوریتمها"""
         layout = QVBoxLayout(parent)
 
-        # دکمه مقایسه
         compare_btn = QPushButton("🎁 Compare ALL Algorithms (Brute-force + LSH + HNSW)")
         compare_btn.setStyleSheet(
             "font-size: 14px; padding: 12px; background-color: #9C27B0; color: white; font-weight: bold;"
@@ -651,7 +761,6 @@ class CBIRMainWindow(QMainWindow):
         compare_btn.clicked.connect(self.run_complete_comparison)
         layout.addWidget(compare_btn)
 
-        # اطلاعات
         info_label = QLabel(
             "🎯 This feature compares all available search methods:\n"
             "• Brute-force (Ground Truth)\n"
@@ -662,7 +771,6 @@ class CBIRMainWindow(QMainWindow):
         info_label.setStyleSheet("font-size: 11px; padding: 10px; background-color: #FFF3E0; border-radius: 5px;")
         layout.addWidget(info_label)
 
-        # جدول نتایج
         self.bonus_table = QTableWidget()
         self.bonus_table.setColumnCount(5)
         self.bonus_table.setHorizontalHeaderLabels([
@@ -671,7 +779,6 @@ class CBIRMainWindow(QMainWindow):
         self.bonus_table.horizontalHeader().setStretchLastSection(True)
         layout.addWidget(self.bonus_table)
 
-        # نمودار مقایسه
         self.bonus_canvas = FigureCanvas(Figure(figsize=(12, 6)))
         layout.addWidget(self.bonus_canvas)
 
@@ -703,13 +810,8 @@ class CBIRMainWindow(QMainWindow):
         layout.addWidget(refresh_stats_btn)
 
     def _update_search_methods_combo(self):
-        """
-        ✅ به‌روزرسانی گزینه‌های جستجو بر اساس قابلیت‌های database
-        """
-        # ذخیره انتخاب فعلی
+        """✅ بهروزرسانی گزینههای جستجو بر اساس قابلیتهای database"""
         current_selection = self.search_method_combo.currentIndex()
-
-        # پاک کردن و اضافه مجدد
         self.search_method_combo.clear()
 
         methods = ["LSH (Fast)", "Brute-force (Exact)"]
@@ -721,32 +823,30 @@ class CBIRMainWindow(QMainWindow):
 
         self.search_method_combo.addItems(methods)
 
-        # بازگرداندن انتخاب قبلی (یا LSH به عنوان default)
         if current_selection < len(methods):
             self.search_method_combo.setCurrentIndex(current_selection)
         else:
-            self.search_method_combo.setCurrentIndex(0)  # LSH
+            self.search_method_combo.setCurrentIndex(0)
 
     def initialize_database(self):
         """بارگذاری دیتابیس (با پشتیبانی HNSW)"""
         try:
             self.statusBar().showMessage(f"Initializing database from {self.db_path}...")
-
             Path(self.db_path).parent.mkdir(parents=True, exist_ok=True)
 
-            # ✅ فعال‌سازی HNSW (BONUS)
+            # ✅ فعالسازی HNSW (BONUS)
             self.vector_db = VectorDatabase(
                 dim=512,
                 persist_path=self.db_path,
                 use_lsh=True,
-                use_hnsw=True,  # ✅ تغییر به True برای فعال‌سازی HNSW
+                use_hnsw=True,
                 lsh_params={'num_tables': 8, 'hash_size': 10, 'seed': 42},
                 hnsw_params={'M': 16, 'ef_construction': 200}
             )
 
             self.image_processor = ImageProcessor(device='auto')
 
-            # ✅ به‌روزرسانی ComboBox بعد از ساخت database
+            # ✅ بهروزرسانی ComboBox
             self._update_search_methods_combo()
 
             num_images = len(self.vector_db.vectors)
@@ -759,7 +859,6 @@ class CBIRMainWindow(QMainWindow):
             if num_images > 0:
                 self.update_stats()
                 self.refresh_embedding_plot()
-
         except Exception as e:
             self.statusBar().showMessage(f"Error initializing database: {str(e)}")
             logging.error(f"Database initialization error: {e}")
@@ -775,7 +874,6 @@ class CBIRMainWindow(QMainWindow):
 
         if file_path:
             self.query_image_path = file_path
-
             pixmap = QPixmap(file_path)
             pixmap = pixmap.scaled(280, 280, Qt.KeepAspectRatio, Qt.SmoothTransformation)
             self.query_image_label.setPixmap(pixmap)
@@ -809,7 +907,6 @@ class CBIRMainWindow(QMainWindow):
 
         # تعیین روش جستجو
         method_text = self.search_method_combo.currentText()
-
         if "LSH" in method_text:
             search_method = 'lsh'
         elif "Brute-force" in method_text:
@@ -823,12 +920,13 @@ class CBIRMainWindow(QMainWindow):
             top_k,
             search_method
         )
+
         self.search_thread.finished.connect(self.display_results)
         self.search_thread.error.connect(self.search_error)
         self.search_thread.start()
 
     def display_results(self, results, elapsed, method):
-        """نمایش نتایج جستجو"""
+        """✅ نمایش نتایج جستجو با لود صحیح عکس‌ها"""
         self.progress_bar.setVisible(False)
         self.search_btn.setEnabled(True)
 
@@ -848,23 +946,20 @@ class CBIRMainWindow(QMainWindow):
             col = idx % cols
 
             metadata = self.vector_db.get_metadata(vec_id)
-            rel_path = metadata.get('image_path', '')
+            stored_path = metadata.get('image_path', '')
 
-            rel_path_norm = rel_path.replace("\\", "/")
-            parts = rel_path_norm.split("/")
-            if parts[0].lower().startswith("caltech101"):
-                rel_rel = "/".join(parts[1:])
-            else:
-                rel_rel = rel_path_norm
+            # ✅ پیدا کردن مسیر عکس
+            valid_path = self.find_image_path(stored_path)
 
-            base_dir = PROJECT_ROOT / "data" / "caltech101" / "images" / "101_ObjectCategories"
-            full_path = (base_dir / rel_rel).resolve()
+            # اگه پیدا نشد، از مسیر ذخیره شده استفاده کن
+            # ImageLabel خودش placeholder نشون میده اگه عکس لود نشه
+            img_path_to_use = str(valid_path) if valid_path else stored_path
 
-            if full_path.exists():
-                img_label = ImageLabel(str(full_path), similarity, vec_id)
-                self.results_layout.addWidget(img_label, row, col)
+            img_label = ImageLabel(img_path_to_use, similarity, vec_id)
+            self.results_layout.addWidget(img_label, row, col)
 
         self.statusBar().showMessage(f"Found {len(results)} similar images using {method}")
+
 
     def search_error(self, error_msg):
         """مدیریت خطا در جستجو"""
@@ -874,7 +969,7 @@ class CBIRMainWindow(QMainWindow):
         QMessageBox.critical(self, "Search Error", f"An error occurred during search:\n{error_msg}")
 
     def run_performance_comparison(self):
-        """مقایسه عملکرد LSH و Brute-force (تب عملکرد)"""
+        """مقایسه عملکرد LSH و Brute-force"""
         if len(self.vector_db.vectors) == 0:
             QMessageBox.warning(self, "Warning", "Database is empty!")
             return
@@ -897,7 +992,6 @@ class CBIRMainWindow(QMainWindow):
             speed_ratio = bf_time / lsh_time if lsh_time > 0 else 0
 
             self.perf_table.setRowCount(2)
-
             self.perf_table.setItem(0, 0, QTableWidgetItem("Brute-force (Exact)"))
             self.perf_table.setItem(0, 1, QTableWidgetItem(f"{bf_time:.2f}"))
             self.perf_table.setItem(0, 2, QTableWidgetItem(str(len(bf_results))))
@@ -923,20 +1017,19 @@ class CBIRMainWindow(QMainWindow):
             for bar, time_val in zip(bars, times):
                 height = bar.get_height()
                 ax.text(bar.get_x() + bar.get_width() / 2., height,
-                        f'{time_val:.2f} ms',
-                        ha='center', va='bottom', fontsize=10)
+                       f'{time_val:.2f} ms',
+                       ha='center', va='bottom', fontsize=10)
 
             self.perf_canvas.draw()
 
             self.statusBar().showMessage(
                 f"Comparison complete: LSH is {speed_ratio:.2f}x faster than Brute-force"
             )
-
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Performance comparison failed:\n{str(e)}")
 
     def run_complete_comparison(self):
-        """✅ BONUS: مقایسه کامل همه الگوریتم‌ها"""
+        """✅ BONUS: مقایسه کامل همه الگوریتمها"""
         if self.query_embedding is None:
             QMessageBox.warning(self, "Warning", "Please select a query image first!")
             return
@@ -947,10 +1040,9 @@ class CBIRMainWindow(QMainWindow):
 
         try:
             self.statusBar().showMessage("Running complete comparison (including BONUS)...")
-
             results_data = []
 
-            # 1. Brute-force (Ground Truth)
+            # 1. Brute-force
             start = time.time()
             bf_results = self.vector_db.find_similar(
                 self.query_embedding, top_k=10, use_lsh=False, use_hnsw=False
@@ -1004,7 +1096,6 @@ class CBIRMainWindow(QMainWindow):
 
             # پر کردن جدول
             self.bonus_table.setRowCount(len(results_data))
-
             for i, data in enumerate(results_data):
                 self.bonus_table.setItem(i, 0, QTableWidgetItem(data['name']))
                 self.bonus_table.setItem(i, 1, QTableWidgetItem(f"{data['time']:.2f}"))
@@ -1022,7 +1113,6 @@ class CBIRMainWindow(QMainWindow):
             self._plot_complete_comparison(results_data)
 
             self.statusBar().showMessage("✅ Complete comparison finished!")
-
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Complete comparison failed:\n{str(e)}")
             logging.error(f"Comparison error: {e}")
@@ -1032,7 +1122,6 @@ class CBIRMainWindow(QMainWindow):
         fig = self.bonus_canvas.figure
         fig.clear()
 
-        # دو subplot: زمان و دقت
         ax1 = fig.add_subplot(121)
         ax2 = fig.add_subplot(122)
 
@@ -1049,8 +1138,8 @@ class CBIRMainWindow(QMainWindow):
         for bar, time_val in zip(bars1, times):
             height = bar.get_height()
             ax1.text(bar.get_x() + bar.get_width() / 2., height,
-                     f'{time_val:.1f}ms',
-                     ha='center', va='bottom', fontsize=9)
+                    f'{time_val:.1f}ms',
+                    ha='center', va='bottom', fontsize=9)
 
         # نمودار دقت
         precisions = [d.get('precision', 100.0) for d in results_data]
@@ -1063,8 +1152,8 @@ class CBIRMainWindow(QMainWindow):
         for bar, prec in zip(bars2, precisions):
             height = bar.get_height()
             ax2.text(bar.get_x() + bar.get_width() / 2., height,
-                     f'{prec:.1f}%',
-                     ha='center', va='bottom', fontsize=9)
+                    f'{prec:.1f}%',
+                    ha='center', va='bottom', fontsize=9)
 
         fig.tight_layout()
         self.bonus_canvas.draw()
@@ -1079,7 +1168,7 @@ class CBIRMainWindow(QMainWindow):
                 self.statusBar().showMessage(f"Error plotting embeddings: {str(e)}")
 
     def update_stats(self):
-        """بهروزرسانی آمار دیتابیس (با HNSW)"""
+        """بهروزرسانی آمار دیتابیس"""
         if not self.vector_db:
             return
 
@@ -1088,6 +1177,7 @@ class CBIRMainWindow(QMainWindow):
         stats_text = "=" * 60 + "\n"
         stats_text += "DATABASE STATISTICS\n"
         stats_text += "=" * 60 + "\n\n"
+
         stats_text += f"Total Vectors: {stats['total_vectors']}\n"
         stats_text += f"Dimension: {stats['dimension']}\n"
         stats_text += f"LSH Enabled: {stats['use_lsh']}\n"
@@ -1105,7 +1195,7 @@ class CBIRMainWindow(QMainWindow):
                 stats_text += f"  {key}: {value}\n"
             stats_text += "\n"
 
-        # ✅ BONUS: HNSW Stats
+        # HNSW Stats
         if 'hnsw_stats' in stats:
             stats_text += "-" * 60 + "\n"
             stats_text += "🎁 HNSW INDEX STATISTICS (BONUS)\n"
