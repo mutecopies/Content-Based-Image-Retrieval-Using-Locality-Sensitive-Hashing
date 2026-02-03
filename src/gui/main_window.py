@@ -14,7 +14,7 @@ import time
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.append(str(PROJECT_ROOT))
 
-# ابتدا ماژول‌های torch را import کنید (قبل از PyQt)
+# ابتدا ماژول‌هشای torch را import کنید (قبل از PyQt)
 from utils.image_processor import ImageProcessor
 from core.vector_db import VectorDatabase
 
@@ -33,6 +33,50 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import logging
+import cv2
+
+
+class BuildDatabaseThread(QThread):
+    """Thread برای ساخت دیتابیس از پوشه تصاویر"""
+    progress = pyqtSignal(int, str)  # (percentage, message)
+    finished = pyqtSignal(int, float)  # (num_images, time_taken)
+    error = pyqtSignal(str)
+
+    def __init__(self, vector_db, image_processor, folder_path, category_name):
+        super().__init__()
+        self.vector_db = vector_db
+        self.image_processor = image_processor
+        self.folder_path = folder_path
+        self.category_name = category_name
+
+    def run(self):
+        try:
+            start_time = time.time()
+            results = self.image_processor.process_directory(
+                self.folder_path,
+                max_images=None
+            )
+
+            total = len(results)
+            if total == 0:
+                self.finished.emit(0, 0.0)
+                return
+
+            for idx, (image_id, embedding, metadata) in enumerate(results):
+                metadata['category'] = self.category_name
+                unique_id = f"{self.category_name}_{image_id}"
+
+                self.vector_db.add_vector(unique_id, embedding, metadata)
+
+                progress = int((idx + 1) / total * 100)
+                self.progress.emit(progress, f"Processing {idx + 1}/{total} images...")
+
+            elapsed = time.time() - start_time
+            self.finished.emit(total, elapsed)
+
+        except Exception as e:
+            self.error.emit(str(e))
+
 
 
 class SearchThread(QThread):
@@ -207,6 +251,11 @@ class CBIRMainWindow(QMainWindow):
         tabs = QTabWidget()
         main_layout.addWidget(tabs)
 
+
+        db_tab = QWidget()
+        tabs.addTab(db_tab, "📦 Database Management")
+        self.setup_database_tab(db_tab)
+
         search_tab = QWidget()
         tabs.addTab(search_tab, "🔍 Image Search")
         self.setup_search_tab(search_tab)
@@ -229,6 +278,283 @@ class CBIRMainWindow(QMainWindow):
         self.setup_stats_tab(stats_tab)
 
         self.statusBar().showMessage("Ready")
+
+    def setup_database_tab(self, parent):
+        layout = QVBoxLayout(parent)
+
+        sample_group = QGroupBox("🧪 Build Synthetic Sample Dataset (Automatic)")
+        sample_layout = QVBoxLayout()
+
+        self.sample_info_label = QLabel(
+            "This will generate a synthetic dataset with categories: "
+            "car, animal, building, food, nature\n"
+            "Then it creates embeddings and fills the vector database."
+        )
+        self.sample_info_label.setWordWrap(True)
+        sample_layout.addWidget(self.sample_info_label)
+
+        self.build_sample_btn = QPushButton("🧪 Build Sample Dataset & Database")
+        self.build_sample_btn.setStyleSheet(
+            "font-size: 14px; padding: 10px; background-color: #3F51B5; color: white;"
+        )
+        self.build_sample_btn.clicked.connect(self.build_sample_dataset_and_database)
+        sample_layout.addWidget(self.build_sample_btn)
+
+        self.sample_progress = QProgressBar()
+        self.sample_progress.setVisible(False)
+        sample_layout.addWidget(self.sample_progress)
+
+        sample_group.setLayout(sample_layout)
+        layout.addWidget(sample_group)
+
+        create_group = QGroupBox("🏗️ Build Database from Images")
+        create_layout = QVBoxLayout()
+
+        folder_layout = QHBoxLayout()
+        self.folder_path_label = QLabel("No folder selected")
+        self.folder_path_label.setStyleSheet("padding: 5px; border: 1px solid #ccc;")
+        folder_layout.addWidget(QLabel("Image Folder:"))
+        folder_layout.addWidget(self.folder_path_label, 1)
+
+        self.select_folder_btn = QPushButton("📁 Select Folder")
+        self.select_folder_btn.clicked.connect(self.select_image_folder)
+        folder_layout.addWidget(self.select_folder_btn)
+        create_layout.addLayout(folder_layout)
+
+        category_layout = QHBoxLayout()
+        category_layout.addWidget(QLabel("Category Name:"))
+        self.category_input = QLineEdit()
+        self.category_input.setPlaceholderText("e.g., animals, cars, buildings")
+        category_layout.addWidget(self.category_input)
+        create_layout.addLayout(category_layout)
+
+        self.build_db_btn = QPushButton("🚀 Add Images to Database")
+        self.build_db_btn.setStyleSheet(
+            "font-size: 14px; padding: 10px; background-color: #4CAF50; color: white;"
+        )
+        self.build_db_btn.clicked.connect(self.build_database)
+        create_layout.addWidget(self.build_db_btn)
+
+        self.build_progress = QProgressBar()
+        self.build_progress.setVisible(False)
+        create_layout.addWidget(self.build_progress)
+
+        create_group.setLayout(create_layout)
+        layout.addWidget(create_group)
+
+        manage_group = QGroupBox("🗄️ Database Operations")
+        manage_layout = QHBoxLayout()
+
+        self.clear_db_btn = QPushButton("🗑️ Clear Database")
+        self.clear_db_btn.clicked.connect(self.clear_database)
+        manage_layout.addWidget(self.clear_db_btn)
+
+        self.save_db_btn = QPushButton("💾 Save Database")
+        self.save_db_btn.clicked.connect(self.save_database)
+        manage_layout.addWidget(self.save_db_btn)
+
+        self.load_db_btn = QPushButton("📂 Load Database")
+        self.load_db_btn.clicked.connect(self.load_database)
+        manage_layout.addWidget(self.load_db_btn)
+
+        manage_group.setLayout(manage_layout)
+        layout.addWidget(manage_group)
+
+        log_group = QGroupBox("📋 Build Log")
+        log_layout = QVBoxLayout()
+        self.db_log = QTextEdit()
+        self.db_log.setReadOnly(True)
+        self.db_log.setMaximumHeight(200)
+        log_layout.addWidget(self.db_log)
+        log_group.setLayout(log_layout)
+        layout.addWidget(log_group)
+
+        layout.addStretch()
+
+
+    def build_sample_dataset_and_database(self):
+        """ساخت دیتاست مصنوعی + پر کردن دیتابیس (کاملاً خودکار)"""
+        reply = QMessageBox.question(
+            self,
+            "Confirm",
+            "This will CLEAR current database and build a new synthetic dataset.\nContinue?",
+            QMessageBox.Yes | QMessageBox.No
+        )
+        if reply != QMessageBox.Yes:
+            return
+
+        try:
+            self.statusBar().showMessage("Building synthetic dataset and database...")
+            self.sample_progress.setVisible(True)
+            self.sample_progress.setValue(0)
+
+            # پاک کردن دیتابیس فعلی
+            self.vector_db.clear_database()
+
+            categories = ['car', 'animal', 'building', 'food', 'nature']
+            num_per_cat = 20
+            total_images = len(categories) * num_per_cat
+            processed = 0
+
+            # پوشه ذخیره تصاویر (اختیاری برای debug)
+            sample_root = Path("data/raw_images/sample_synthetic")
+            sample_root.mkdir(parents=True, exist_ok=True)
+
+            start_time = time.time()
+
+            for cat in categories:
+                cat_dir = sample_root / cat
+                cat_dir.mkdir(parents=True, exist_ok=True)
+
+                for i in range(num_per_cat):
+                    img = self.generate_synthetic_image(cat)
+                    filename = f"{cat}_{i+1:03d}.jpg"
+                    img_path = cat_dir / filename
+
+                    cv2.imwrite(str(img_path), img)
+
+                    # استخراج embedding با ImageProcessor
+                    embedding = self.image_processor.process_image(str(img_path))
+                    metadata = {
+                        "image_path": str(img_path),
+                        "category": cat
+                    }
+                    vec_id = f"{cat}_{i+1:03d}"
+                    self.vector_db.add_vector(vec_id, embedding, metadata)
+
+                    processed += 1
+                    progress = int(processed / total_images * 100)
+                    self.sample_progress.setValue(progress)
+                    self.statusBar().showMessage(
+                        f"Building synthetic dataset: {processed}/{total_images} images..."
+                    )
+
+            elapsed = time.time() - start_time
+            self.vector_db.save_to_disk()
+
+            self.sample_progress.setVisible(False)
+            self.db_log.append(
+                f"\n✅ Synthetic dataset built with {total_images} images in {elapsed:.2f} seconds"
+            )
+            self.db_log.append(f"💾 Database saved to {self.db_path}\n")
+            self.statusBar().showMessage(
+                f"Synthetic database ready: {len(self.vector_db.vectors)} images"
+            )
+
+            self.update_stats()
+            self.refresh_embedding_plot()
+
+            QMessageBox.information(
+                self,
+                "Success",
+                f"Synthetic dataset & database built!\nTotal images: {len(self.vector_db.vectors)}"
+            )
+
+        except Exception as e:
+            self.sample_progress.setVisible(False)
+            QMessageBox.critical(self, "Error", f"Failed to build synthetic dataset:\n{str(e)}")
+            logging.error(f"Synthetic dataset build error: {e}")
+
+    # ---------- بقیه متدهای قبلی (بدون تغییر) ----------
+
+
+    def select_image_folder(self):
+        """انتخاب پوشه تصاویر"""
+        folder = QFileDialog.getExistingDirectory(self, "Select Image Folder")
+        if folder:
+            self.folder_path_label.setText(folder)
+            self.selected_folder = folder
+
+
+    def build_database(self):
+        """ساخت دیتابیس از پوشه تصاویر"""
+        if not hasattr(self, 'selected_folder'):
+            QMessageBox.warning(self, "Warning", "Please select an image folder first!")
+            return
+
+        category = self.category_input.text().strip()
+        if not category:
+            QMessageBox.warning(self, "Warning", "Please enter a category name!")
+            return
+
+        self.build_db_btn.setEnabled(False)
+        self.build_progress.setVisible(True)
+        self.build_progress.setValue(0)
+
+        self.db_log.append(f"\n{'=' * 50}")
+        self.db_log.append(f"Building database from: {self.selected_folder}")
+        self.db_log.append(f"Category: {category}")
+        self.db_log.append(f"{'=' * 50}\n")
+
+        # ساخت thread
+        self.build_thread = BuildDatabaseThread(
+            self.vector_db,
+            self.image_processor,
+            self.selected_folder,
+            category
+        )
+        self.build_thread.progress.connect(self.on_build_progress)
+        self.build_thread.finished.connect(self.on_build_finished)
+        self.build_thread.error.connect(self.on_build_error)
+        self.build_thread.start()
+
+
+    def clear_database(self):
+        """پاک کردن دیتابیس"""
+        reply = QMessageBox.question(
+            self,
+            "Confirm",
+            "Are you sure you want to clear the entire database?",
+            QMessageBox.Yes | QMessageBox.No
+        )
+
+        if reply == QMessageBox.Yes:
+            self.vector_db.clear_database()
+            self.db_log.append("🗑️ Database cleared\n")
+            self.statusBar().showMessage("Database cleared")
+            self.update_stats()
+
+
+    def save_database(self):
+        """ذخیره دیتابیس"""
+        try:
+            self.vector_db.save_to_disk()
+            self.db_log.append(f"💾 Database saved to {self.db_path}\n")
+            QMessageBox.information(self, "Success", "Database saved successfully!")
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to save database:\n{str(e)}")
+
+
+    def load_database(self):
+        """بارگذاری دیتابیس"""
+        file_path, _ = QFileDialog.getOpenFileName(
+            self,
+            "Load Database",
+            "data/embeddings",
+            "Pickle Files (*.pkl)"
+        )
+
+        if file_path:
+            try:
+                self.vector_db = VectorDatabase(
+                    dim=512,
+                    persist_path=file_path,
+                    use_lsh=True,
+                    lsh_params={'num_tables': 8, 'hash_size': 10, 'seed': 42}
+                )
+                self.db_path = file_path
+                self.db_log.append(f"📂 Loaded database from {file_path}\n")
+                self.db_log.append(f"   Total images: {len(self.vector_db.vectors)}\n")
+                self.update_stats()
+                self.refresh_embedding_plot()
+                QMessageBox.information(
+                    self,
+                    "Success",
+                    f"Database loaded successfully!\nTotal images: {len(self.vector_db.vectors)}"
+                )
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to load database:\n{str(e)}")
+
 
     def setup_search_tab(self, parent):
         layout = QVBoxLayout(parent)

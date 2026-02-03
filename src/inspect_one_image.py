@@ -13,5 +13,5 @@ db = VectorDatabase(
     lsh_params={'num_tables': 8, 'hash_size': 10, 'seed': 42}
 )
 
-meta = db.get_metadata("img_08050")
+meta = db.get_metadata("img_01784")
 print(meta)

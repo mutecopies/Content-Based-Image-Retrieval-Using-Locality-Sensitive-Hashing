@@ -591,3 +591,4 @@
 2026-01-31 14:55:54,840 - root - INFO - Using device: cpu
 2026-01-31 14:55:55,093 - root - INFO - ImageProcessor initialized successfully
 2026-01-31 14:55:55,094 - root - INFO - ✅ HNSW search method added to UI
+2026-02-03 11:38:44,133 - root - INFO - LSHIndex initialized with 8 tables, 10 bits each
